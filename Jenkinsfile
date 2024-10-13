@@ -22,22 +22,42 @@ pipeline {
         }
 
 
-        stage('Maven Clean') {
+        
+        stage('Maven compile') {
             steps {
                 // Exécuter la commande Maven clean
-                sh 'mvn build'
+                sh 'mvn compile'
+            }
+        }
+
+
+        stage('Maven test') {
+            steps {
+                // Exécuter la commande Maven clean
+                sh 'mvn test'
             }
         }
 
 
 
-
-        stage('Maven Install') {
+        stage('Maven package') {
             steps {
                 // Exécuter la commande Maven install
-                sh 'mvn install'
+                sh 'mvn package'
             }
         }
+
+        // stage('Maven Install') {
+        //     steps {
+        //         // Exécuter la commande Maven install
+        //         sh 'mvn install'
+        //     }
+        // }
+
+        
+
+
+        
     }
 
     post {
