@@ -9,40 +9,40 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Récupère le code source depuis le référentiel Git.
                 git branch: 'main', url: 'https://github.com/NasriMedAmine/ProjetDevops.git'
             }
         }
 
         stage('Maven Clean') {
             steps {
-                // Exécuter la commande Maven clean
                 sh 'mvn clean'
             }
         }
 
-
+        stage('Maven Install') {
+            steps {
+                // Exécuter la commande Maven install
+                sh 'mvn install'
+            }
+        }
         
-        stage('Maven compile') {
-            steps {
-                // Exécuter la commande Maven clean
-                sh 'mvn compile'
-            }
-        }
+        // stage('Maven compile') {
+        //     steps {
+        //         sh 'mvn compile'
+        //     }
+        // }
 
 
-        stage('Maven test') {
-            steps {
-                // Exécuter la commande Maven clean
-                sh 'mvn test'
-            }
-        }
+        // stage('Maven test') {
+        //     steps {
+        //         sh 'mvn test'
+        //     }
+        // }
 
 
 
         stage('Maven package') {
             steps {
-                // Exécuter la commande Maven install
                 sh 'mvn package'
             }
         }
@@ -62,7 +62,6 @@ pipeline {
 
     post {
         always {
-            // Toujours afficher un message de fin.
             echo 'Pipeline terminé.'
         }
     }
