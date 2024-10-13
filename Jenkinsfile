@@ -14,13 +14,28 @@ pipeline {
             }
         }
 
-        stage('Show System Date') {
+        stage('Maven Clean') {
             steps {
-                // Affiche la date système dans la console de Jenkins.
-                script {
-                    def currentDate = new Date()
-                    echo "Current Date: ${currentDate}"
-                }
+                // Exécuter la commande Maven clean
+                sh 'mvn clean'
+            }
+        }
+
+
+        stage('Maven Clean') {
+            steps {
+                // Exécuter la commande Maven clean
+                sh 'mvn build'
+            }
+        }
+
+
+
+
+        stage('Maven Install') {
+            steps {
+                // Exécuter la commande Maven install
+                sh 'mvn install'
             }
         }
     }
