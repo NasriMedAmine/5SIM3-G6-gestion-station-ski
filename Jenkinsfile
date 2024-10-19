@@ -19,25 +19,25 @@ pipeline {
             }
         }
 
-        stage('Maven Install') {
+        // stage('Maven Install') {
+        //     steps {
+        //         // Exécuter la commande Maven install
+        //         sh 'mvn install'
+        //     }
+        // }
+        
+        stage('Maven compile') {
             steps {
-                // Exécuter la commande Maven install
-                sh 'mvn install'
+                sh 'mvn compile'
             }
         }
-        
-        // stage('Maven compile') {
-        //     steps {
-        //         sh 'mvn compile'
-        //     }
-        // }
 
 
-        // stage('Maven test') {
-        //     steps {
-        //         sh 'mvn test'
-        //     }
-        // }
+        stage('Maven test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
 
 
 
