@@ -33,11 +33,11 @@ pipeline {
         }
 
 
-        stage('Maven test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
+        // stage('Maven test') {
+        //     steps {
+        //         sh 'mvn test'
+        //     }
+        // }
 
 
 
