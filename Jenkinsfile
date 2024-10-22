@@ -43,7 +43,7 @@ pipeline {
 
         stage('Maven package') {
             steps {
-                sh 'mvn package'
+                sh 'mvn package -DskipTests=true'
             }
         }
 

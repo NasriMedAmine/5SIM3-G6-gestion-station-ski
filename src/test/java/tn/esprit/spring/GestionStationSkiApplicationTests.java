@@ -26,7 +26,7 @@ class GestionStationSkiApplicationTests {
     @Order(0)
     public void addPisteTest() {
         Piste piste = new Piste();
-        piste.setLength(5);  // Set any other required properties here
+        piste.setLength(5);  
 
         // Save the piste entity and assert it's not null
         Piste savedPiste = pisteRepository.save(piste);
