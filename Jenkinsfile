@@ -18,7 +18,7 @@ pipeline {
 
 
 
-    s
+    
     stages {
         stage('Checkout') {
             steps {
