@@ -6,6 +6,15 @@ pipeline {
         pollSCM('H/1 * * * *')
     }
 
+    environment {
+        // Define any global environment variables
+        NEXUS_URL = 'http://localhost:8081'
+        SONAR_URL = 'http://localhost:9000'
+        DOCKER_COMPOSE_FILE = 'docker-compose.yml'
+        REPO_NAME = 'example-repo'
+    }
+    
+
     stages {
         stage('Checkout') {
             steps {
@@ -33,11 +42,18 @@ pipeline {
         }
 
 
-        // stage('Maven test') {
-        //     steps {
-        //         sh 'mvn test'
-        //     }
-        // }
+       
+        stage('SonarQube Analysis') {
+            environment {
+                // Specify SonarQube credentials if required
+                SONAR_AUTH = credentials('sonarqube')
+            }
+            steps {
+                // Run SonarQube analysis
+                sh 'mvn sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_AUTH'
+            }
+        }
+        
 
 
 
