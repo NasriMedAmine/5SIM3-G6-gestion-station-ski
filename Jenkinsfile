@@ -67,12 +67,12 @@ pipeline {
             }
         }
 
-        // stage('Maven Install') {
-        //     steps {
-        //         // Exécuter la commande Maven install
-        //         sh 'mvn install'
-        //     }
-        // }
+        stage('clean deploy') {
+            steps {
+                // Exécuter la commande Maven install
+                sh 'mvn clean deploy'
+            }
+        }
 
         stage('Maven Deploy') {
             steps {
