@@ -8,10 +8,10 @@ pipeline {
 
     environment {
         // Define any global environment variables
-        NEXUS_URL = 'http://localhost:8081'
+        // NEXUS_URL = 'http://localhost:8081'
         SONAR_URL = 'http://localhost:9000'
-        DOCKER_COMPOSE_FILE = 'docker-compose.yml'
-        REPO_NAME = 'example-repo'
+        // DOCKER_COMPOSE_FILE = 'docker-compose.yml'
+        // REPO_NAME = 'example-repo'
     }
     
 
