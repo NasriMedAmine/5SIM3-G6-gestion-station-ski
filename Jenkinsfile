@@ -46,7 +46,7 @@ pipeline {
         stage('SonarQube Analysis') {
             environment {
                 // Specify SonarQube credentials if required
-                SONAR_AUTH = credentials('{AQAAABAAAAAwb6zQ2hdp8NNk2J3bP28t3xhcDAwyyMqgymsTwW+v+f9T1AEGzs2vNlt2TO9oP8iXRYYoUquaQjXDn0c/z9ZdWQ==}')
+                SONAR_AUTH = credentials('sonartoken')
             }
             steps {
                 // Run SonarQube analysis
