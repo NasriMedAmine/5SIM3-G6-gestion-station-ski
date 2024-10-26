@@ -37,12 +37,6 @@ pipeline {
             }
         }
 
-        // stage('Maven Install') {
-        //     steps {
-        //         // Exécuter la commande Maven install
-        //         sh 'mvn install'
-        //     }
-        // }
         
         stage('Maven compile') {
             steps {
@@ -87,7 +81,7 @@ pipeline {
 
         stage('Deploy to Nexus') {
             steps {
-                withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'admin', passwordVariable: 'qsddsq0987QSDDSQ?')]) {
+                withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
                     sh 'mvn deploy -DskipTests=true'
                 }
             }
