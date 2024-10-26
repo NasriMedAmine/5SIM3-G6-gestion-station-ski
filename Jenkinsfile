@@ -13,8 +13,8 @@ pipeline {
         // DOCKER_COMPOSE_FILE = 'docker-compose.yml'
         // REPO_NAME = 'example-repo'
 
-        // NEXUS_URL = 'http://localhost:8081/repository/maven-releases/'
-        // NEXUS_CREDENTIALS_ID = 'nexusRepo'
+        NEXUS_URL = 'http://localhost:8081/repository/maven-releases/'
+        NEXUS_CREDENTIALS_ID = 'nexusRepo'
 
 
 
@@ -22,11 +22,11 @@ pipeline {
 
 
 
-        NEXUS_VERSION = "nexus3"
-        NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "http://192.168.159.129/:8081"
-        NEXUS_REPOSITORY = "deployementRepo"
-        NEXUS_CREDENTIAL_ID = "nexusRepo"
+        // NEXUS_VERSION = "nexus3"
+        // NEXUS_PROTOCOL = "http"
+        // NEXUS_URL = "http://192.168.159.129/:8081"
+        // NEXUS_REPOSITORY = "deployementRepo"
+        // NEXUS_CREDENTIAL_ID = "nexusRepo"
 
     }
     
@@ -90,49 +90,14 @@ pipeline {
         //     }
         // }
 
-        // stage('Deploy to Nexus') {
-        //     steps {
-        //         withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
-        //             sh 'mvn deploy -DskipTests=true -X'
-        //         }
-        //     }
-        // }
-
-        stage("Publish to Nexus Repository Manager") {
+        stage('Deploy to Nexus') {
             steps {
-                script {
-                    pom = readMavenPom file: "pom.xml";
-                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
-                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
-                    artifactPath = filesByGlob[0].path;
-                    artifactExists = fileExists artifactPath;
-                    if(artifactExists) {
-                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
-                        nexusArtifactUploader(
-                            nexusVersion: NEXUS_VERSION,
-                            protocol: NEXUS_PROTOCOL,
-                            nexusUrl: NEXUS_URL,
-                            groupId: pom.groupId,
-                            version: pom.version,
-                            repository: NEXUS_REPOSITORY,
-                            credentialsId: NEXUS_CREDENTIAL_ID,
-                            artifacts: [
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: artifactPath,
-                                type: pom.packaging],
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]
-                            ]
-                        );
-                    } else {
-                        error "*** File: ${artifactPath}, could not be found";
-                    }
+                withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
+                    sh 'mvn deploy -DskipTests=true -X'
                 }
             }
         }
+
 
         
 
