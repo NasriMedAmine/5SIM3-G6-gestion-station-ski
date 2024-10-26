@@ -15,6 +15,16 @@ pipeline {
     }
     
 
+
+
+    tools {
+        jdk 'JDK-17' // Remplacez par le nom que vous avez donné à votre JDK dans Jenkins
+    }
+
+
+
+
+    
     stages {
         stage('Checkout') {
             steps {
