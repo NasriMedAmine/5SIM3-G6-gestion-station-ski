@@ -74,7 +74,11 @@ pipeline {
         //     }
         // }
 
-        
+        stage('Maven Deploy') {
+            steps {
+                sh 'mvn deploy -DskipTests=true'
+            }
+        }
 
 
         
