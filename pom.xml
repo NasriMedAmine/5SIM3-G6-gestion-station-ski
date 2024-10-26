@@ -64,6 +64,12 @@
 	</dependency>
 
 
+	
+
+
+	</dependencies>
+
+
 	<distributionManagement>
 		<repository>
 			<id>deployementRepo</id>
@@ -72,8 +78,6 @@
 		</repository>
 	</distributionManagement>
 
-
-	</dependencies>
 
 	<build>
 		<plugins>
