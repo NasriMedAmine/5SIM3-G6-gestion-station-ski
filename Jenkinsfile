@@ -12,6 +12,11 @@ pipeline {
         SONAR_URL = 'http://localhost:9000'
         // DOCKER_COMPOSE_FILE = 'docker-compose.yml'
         // REPO_NAME = 'example-repo'
+
+        NEXUS_URL = 'http://localhost:8081/repository/maven-releases/'
+        NEXUS_CREDENTIALS_ID = 'nexusRepo'
+
+
     }
     
 
@@ -74,9 +79,17 @@ pipeline {
             }
         }
 
-        stage('Maven Deploy') {
+        // stage('Maven Deploy') {
+        //     steps {
+        //         sh 'mvn deploy -DskipTests=true'
+        //     }
+        // }
+
+        stage('Deploy to Nexus') {
             steps {
-                sh 'mvn deploy -DskipTests=true'
+                withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'admin', passwordVariable: 'qsddsq0987QSDDSQ?')]) {
+                    sh 'mvn deploy -DskipTests=true'
+                }
             }
         }
 
