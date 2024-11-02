@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 import tn.esprit.spring.entities.Piste;
 import tn.esprit.spring.repositories.IPisteRepository;
 
-
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 
 import java.util.List;
@@ -14,24 +15,34 @@ import java.util.List;
 public class PisteServicesImpl implements  IPisteServices{
 
     private IPisteRepository pisteRepository;
+    private static final Logger logger = LogManager.getLogger(PisteServicesImpl.class);
 
     @Override
     public List<Piste> retrieveAllPistes() {
+        logger.info("Retrieving all pistes");
+
         return pisteRepository.findAll();
     }
 
     @Override
     public Piste addPiste(Piste piste) {
+        logger.info("Adding piste: {}", piste);
+
         return pisteRepository.save(piste);
+        
     }
 
     @Override
     public void removePiste(Long numPiste) {
+        logger.info("Removing piste with ID: {}", numPiste);
+
         pisteRepository.deleteById(numPiste);
     }
 
     @Override
     public Piste retrievePiste(Long numPiste) {
+        logger.info("Retrieving piste with ID: {}", numPiste);
+
         return pisteRepository.findById(numPiste).orElse(null);
     }
 }
