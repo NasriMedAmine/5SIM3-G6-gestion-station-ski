@@ -88,7 +88,7 @@ pipeline {
 
         stage('Build the Docker Image') {
             steps {
-                sh 'docker build -t 5sim3-g6-gestion-station-ski .'
+                sh 'sudo docker build -t 5sim3-g6-gestion-station-ski .'
             }
         }
         
