@@ -88,7 +88,10 @@ pipeline {
 
         stage('Build the Docker Image') {
             steps {
-                sh 'sudo docker build -t 5sim3-g6-gestion-station-ski .'
+                // Use the stored sudo password from Jenkins credentials
+                withCredentials([string(credentialsId: 'sudoPassword', variable: 'SUDO_PASSWORD')]) {
+                    sh 'echo $SUDO_PASSWORD | sudo -S docker build -t 5sim3-g6-gestion-station-ski .'
+                }
             }
         }
         
