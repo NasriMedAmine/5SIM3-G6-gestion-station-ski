@@ -1,27 +1,25 @@
-# Use an official Java runtime as a parent image
-FROM openjdk:17-jdk-slim AS build
+# Start from a base image with JDK
+FROM openjdk:11-jdk-slim
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the pom.xml and the source code
+# Copy the Maven wrapper files (if used)
+COPY .mvn/ .mvn
+COPY mvnw .
 COPY pom.xml .
-COPY src ./src
+
+# Copy the source code into the container
+COPY src/ ./src
+
+# Make the Maven wrapper executable
+RUN chmod +x mvnw
 
 # Build the application
 RUN ./mvnw clean package -DskipTests
 
-# Use a smaller base image for the final stage
-FROM openjdk:17-jdk-slim
-
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the built jar file from the build stage
-COPY --from=build /app/target/gestion-station-ski-1.0.jar app.jar
-
-# Expose the application port
+# Expose the port that your application will run on
 EXPOSE 9090
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Specify the command to run the JAR file
+CMD ["java", "-jar", "target/gestion-station-ski-1.0.jar"]
