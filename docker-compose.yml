@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   mysql:
-    image: mysql:latest
+    image: mysql
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: admin
@@ -15,7 +15,7 @@ services:
       - mysql_data:/var/lib/mysql
 
   app:
-    image: 5sim3-g6-gestion-station-ski:latest
+    image: 5sim3-g6-gestion-station-ski
     container_name: gestion-station-ski
     depends_on:
       - mysql
