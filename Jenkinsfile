@@ -77,28 +77,20 @@ pipeline {
             }
         }
 
-        // stage('clean deploy') {
+
+        // stage('Deploy to Nexus') {
         //     steps {
-        //         // Exécuter la commande Maven install
-        //         sh 'mvn clean deploy -DskipTests=true'
+        //         withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
+        //             sh 'mvn deploy -DskipTests=true -X'
+        //         }
         //     }
         // }
 
-        // stage('Maven Deploy') {
-        //     steps {
-        //         sh 'mvn deploy -DskipTests=true'
-        //     }
-        // }
-
-        stage('Deploy to Nexus') {
+        stage('Build the Docker Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
-                    sh 'mvn deploy -DskipTests=true -X'
-                }
+                sh 'docker build -t 5sim3-g6-gestion-station-ski .'
             }
         }
-
-
         
 
 
