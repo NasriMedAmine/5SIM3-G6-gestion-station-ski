@@ -19,14 +19,25 @@ public class PisteServicesImpl implements  IPisteServices{
 
     @Override
     public List<Piste> retrieveAllPistes() {
+        logger.info("--------------------------------------------------------------");
+        logger.info("--------------------------------------------------------------");
+
         logger.info("Retrieving all pistes");
+        logger.info("--------------------------------------------------------------");
+        logger.info("--------------------------------------------------------------");
 
         return pisteRepository.findAll();
     }
 
     @Override
     public Piste addPiste(Piste piste) {
+        logger.info("--------------------------------------------------------------");
+
+        logger.info("--------------------------------------------------------------");
+
         logger.info("Adding piste: {}", piste);
+        logger.info("--------------------------------------------------------------");
+        logger.info("--------------------------------------------------------------");
 
         return pisteRepository.save(piste);
         
@@ -34,15 +45,21 @@ public class PisteServicesImpl implements  IPisteServices{
 
     @Override
     public void removePiste(Long numPiste) {
+        logger.info("--------------------------------------------------------------");
+        logger.info("--------------------------------------------------------------");
         logger.info("Removing piste with ID: {}", numPiste);
-
+        logger.info("--------------------------------------------------------------");
+        logger.info("--------------------------------------------------------------");
         pisteRepository.deleteById(numPiste);
     }
 
     @Override
     public Piste retrievePiste(Long numPiste) {
+        logger.info("--------------------------------------------------------------");
+        logger.info("--------------------------------------------------------------");
         logger.info("Retrieving piste with ID: {}", numPiste);
-
+        logger.info("--------------------------------------------------------------");
+        logger.info("--------------------------------------------------------------");
         return pisteRepository.findById(numPiste).orElse(null);
     }
 }
