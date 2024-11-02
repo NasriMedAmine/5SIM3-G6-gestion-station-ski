@@ -91,6 +91,13 @@ pipeline {
                 sh 'sudo docker build -t 5sim3-g6-gestion-station-ski .'
             }
         }
+
+
+        stage('Docker Compose') {
+            steps {
+                sh 'sudo docker-compose up -d'
+            }
+        }
         
 
 
