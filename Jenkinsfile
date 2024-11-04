@@ -84,7 +84,7 @@ pipeline {
 
         stage('Maven package') {
             steps {
-                sh 'mvn package -DskipTests=true'
+                sh 'mvn package '
             }
         }
 
@@ -92,7 +92,7 @@ pipeline {
         // stage('Deploy to Nexus') {
         //     steps {
         //         withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
-        //             sh 'mvn deploy -DskipTests=true -X'
+        //             sh 'mvn deploy  -X'
         //         }
         //     }
         // }
