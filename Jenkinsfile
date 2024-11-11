@@ -37,7 +37,7 @@ pipeline {
 
     
     stages {
-        stage('Checkout') {
+        stage('Git') {
             steps {
                 git branch: 'MedAmineNasri-5SIM3-G6', url: 'https://github.com/NasriMedAmine/5SIM3-G6-gestion-station-ski.git'
             }
