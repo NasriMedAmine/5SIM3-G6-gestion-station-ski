@@ -72,9 +72,9 @@
 
 	<distributionManagement>
 		<repository>
-			<id>deployementRepo</id>
+			<id>sky</id>
 			<name>Nexus Repository</name>
-			<url>http://192.168.159.129:8081/repository/maven-releases/</url>
+			<url>http://localhost:8081/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
 
