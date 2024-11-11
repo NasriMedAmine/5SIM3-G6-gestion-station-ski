@@ -19,7 +19,8 @@ pipeline {
 
 
 
-
+    DOCKER_HUB_CREDENTIALS = 'DockerHub'
+    DOCKER_IMAGE = 'medaminenasri/devops:latest'
 
 
         // NEXUS_VERSION = "nexus3"
@@ -102,6 +103,42 @@ pipeline {
                 sh 'sudo docker build -t 5sim3-g6-gestion-station-ski .'
             }
         }
+
+
+
+
+
+
+
+
+        stage('Login to Docker Hub') { 
+            steps { 
+                script {
+                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_CREDENTIALS) {
+                         echo 'Logged in to Docker Hub' 
+                        } 
+                } 
+            } 
+        } 
+        stage('Push Docker Image') {
+             steps {
+                 script { 
+                    docker.image('5sim3-g6-gestion-station-ski').push('latest') 
+                    }
+                } 
+            }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         stage('Docker Compose') {

@@ -19,7 +19,7 @@ RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Expose the port that your application will run on
-EXPOSE 9090
+EXPOSE 9091
 
 # Specify the command to run the JAR file
 CMD ["java", "-jar", "target/gestion-station-ski-1.0.jar"]
