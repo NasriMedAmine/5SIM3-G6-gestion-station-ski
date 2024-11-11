@@ -89,13 +89,13 @@ pipeline {
         }
 
 
-        // stage('Deploy to Nexus') {
-        //     steps {
-        //         withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
-        //             sh 'mvn deploy  -X'
-        //         }
-        //     }
-        // }
+        stage('Deploy to Nexus') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
+                    sh 'mvn deploy '
+                }
+            }
+        }
 
         stage('Build the Docker Image') {
             steps {
