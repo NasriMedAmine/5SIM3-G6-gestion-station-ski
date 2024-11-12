@@ -20,7 +20,7 @@ pipeline {
 
 
     DOCKER_HUB_CREDENTIALS = 'DockerHub'
-    DOCKER_IMAGE = 'medaminenasri/devops:latest'
+    DOCKER_IMAGE = 'medaminenasri/5sim3-g6-gestion-station-ski:latest'
 
 
         // NEXUS_VERSION = "nexus3"
