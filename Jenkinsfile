@@ -33,7 +33,7 @@ pipeline {
                 SONAR_AUTH = credentials('rached')
             }
             steps {
-                sh "mvn clean verify sonar:sonar -Dsonar.projectKey=skier -Dsonar.host.url=localhost:9000 -Dsonar.login=$SONAR_AUTH"
+                sh "mvn clean verify sonar:sonar -Dsonar.projectKey=skier -Dsonar.host.url=http://10.0.2.15:9000 -Dsonar.login=$SONAR_AUTH"
             }
         }
 
