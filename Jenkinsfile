@@ -156,7 +156,7 @@ pipeline {
 
     post {
         always {
-            // mail to: 'medaminenasri2@gmail.com', subject: "Jenkins Build: ${currentBuild.fullDisplayName}", body: """Build ${currentBuild.fullDisplayName} ${currentBuild.currentResult}: Check console output at ${env.BUILD_URL} to view the results."""
+            mail to: 'medaminenasri2@gmail.com', subject: "Jenkins Build: ${currentBuild.fullDisplayName}", body: """Build ${currentBuild.fullDisplayName} ${currentBuild.currentResult}: Check console output at ${env.BUILD_URL} to view the results."""
         }
     }
 }
