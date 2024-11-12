@@ -152,6 +152,8 @@
 
 		</plugins>
 	</build>
+test
+
 
 	<distributionManagement>
 		<repository>
