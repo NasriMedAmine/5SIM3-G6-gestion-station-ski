@@ -113,7 +113,7 @@ pipeline {
 
         stage('Tag Docker Image') {
              steps { 
-                sh "docker tag 5sim3-g6-gestion-station-ski $DOCKER_IMAGE" 
+                sh "sudo docker tag 5sim3-g6-gestion-station-ski $DOCKER_IMAGE" 
                 } 
                 } 
         
