@@ -21,7 +21,7 @@ pipeline {
 
     DOCKER_HUB_CREDENTIALS = 'DockerHub'
     //DOCKER_IMAGE = '5sim3-g6-gestion-station-ski'
-    DOCKER_IMAGE = 'medaminenasri/5sim3-g6-gestion-station-ski:latest'
+    DOCKER_IMAGE = 'medaminenasri/devops:latest'
 
         // NEXUS_VERSION = "nexus3"
         // NEXUS_PROTOCOL = "http"
@@ -127,7 +127,7 @@ pipeline {
         
          stage('Push Docker Image') {
              steps {
-                 script { docker.image(DOCKER_IMAGE).push() 
+                 script { 'sudo docker push $DOCKER_IMAGE'
                  } } }
 
 
