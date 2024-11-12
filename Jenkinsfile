@@ -20,8 +20,8 @@ pipeline {
 
 
     DOCKER_HUB_CREDENTIALS = 'DockerHub'
-    DOCKER_IMAGE = '5sim3-g6-gestion-station-ski'
-
+    //DOCKER_IMAGE = '5sim3-g6-gestion-station-ski'
+    DOCKER_IMAGE = 'medaminenasri/5sim3-g6-gestion-station-ski:latest'
 
         // NEXUS_VERSION = "nexus3"
         // NEXUS_PROTOCOL = "http"
@@ -111,22 +111,24 @@ pipeline {
 
 
 
-        stage('Login to Docker Hub') { 
-            steps { 
-                script {
-                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_CREDENTIALS) {
-                         echo 'Logged in to Docker Hub' 
-                        } 
+        stage('Tag Docker Image') {
+             steps { 
+                sh "docker tag 5sim3-g6-gestion-station-ski $DOCKER_IMAGE" 
                 } 
-            } 
-        } 
-        stage('Push Docker Image') {
+                } 
+        
+        stage('Login to Docker Hub') {
              steps {
-                 script { 
-                    docker.image('5sim3-g6-gestion-station-ski').push('latest') 
-                    }
-                } 
-            }
+                 script {
+                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_CREDENTIALS) {
+                         echo 'Logged in to Docker Hub' } } } }
+                         
+        
+        
+         stage('Push Docker Image') {
+             steps {
+                 script { docker.image(DOCKER_IMAGE).push() 
+                 } } }
 
 
 
