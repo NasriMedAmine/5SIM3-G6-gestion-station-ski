@@ -28,8 +28,12 @@ pipeline {
         }
 
         stage('Code Quality Check via SonarQube') {
+            environment {
+                // Specify SonarQube credentials if required
+                SONAR_AUTH = credentials('rached')
+            }
             steps {
-                sh "mvn clean verify sonar:sonar -Dsonar.projectKey=skier -Dsonar.host.url=http://172.10.0.140:9000 -Dsonar.login=6f70be821f0fbf77ebf37416403f05771f71b5cc"
+                sh "mvn clean verify sonar:sonar -Dsonar.projectKey=skier -Dsonar.host.url=http://http://10.0.2.15:9000 -Dsonar.login=$SONAR_AUTH"
             }
         }
 
