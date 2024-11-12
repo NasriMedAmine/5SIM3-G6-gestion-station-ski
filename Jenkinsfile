@@ -127,7 +127,7 @@ pipeline {
         
          stage('Push Docker Image') {
              steps {
-                 script { 'sudo docker push $DOCKER_IMAGE'
+                 script { "sudo docker push $DOCKER_IMAGE"
                  } } }
 
 
